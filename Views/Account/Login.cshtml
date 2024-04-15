@@ -1,0 +1,40 @@
+﻿@model Portal.Models.ViewModel.LoginSignUpViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="container">
+    <h1 class="text-center mt-3">Log-in</h1>
+    <div class="mt-0 float-end">
+        <p class="mb-0">Not Register?</p>
+        <a class="mb-0 text-light btn btn-primary font-weight-bold" asp-action="SignUp" asp-controller="Account">Sign Up</a>
+    </div>
+    
+    <div class="row mt-5">
+        <h4 class="text-success text-center">@TempData["successMessage"]</h4>
+        <div class="col-6 offset-3 border border-primary rounded">
+           
+            <form method="post" asp-action="Login">
+                <div class="form-group mt-3">
+                    <label asp-for="Username">Username</label>
+                    <input type="text" asp-for="Username" placeholder="Enter Username" class="form-control" autocomplete="off" />
+                    <span class="text-danger">@TempData["errorUsername"]</span>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" placeholder="Enter Password" class="form-control" autocomplete="off" />
+                    <span class="text-danger">@TempData["errorPassword"]</span>
+                </div>
+                <div class="form-group mt-2">
+                    <input type="checkbox" asp-for="IsRemember"  />
+                    <label asp-for="IsRemember"></label>
+                </div>
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-block btn-success mt-2 mb-4" value="Log In" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

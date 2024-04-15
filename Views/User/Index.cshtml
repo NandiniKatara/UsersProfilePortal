@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Portal.Models.User>
+
+<div class="container">
+    <div class="row">
+        <div >
+            <h2 class="text-center text-uppercase">Users Record</h2>
+            <a class="btn btn-sm btn-success m-1" asp-controller="User" asp-action="Create">Create</a>
+            <h4 class="text-center text-success">@TempData["error"]</h4>
+            <div>
+                
+            </div>
+            
+                @foreach(var i in Model)
+                {
+                    <div class="text-center">
+                       <p>User-Id: </p> <p>@i.Id</p>
+                        <p>@i.Name</p>
+                        <p>@i.Username</p>
+                        
+                        <p>@i.Email</p>
+                        <p>@i.Phone</p>
+                        <p>@i.Facebook</p>
+                        <p>@i.LinkedIn</p>
+                        <p>@i.Github</p>
+                        <p>@i.Twitter</p>
+                        <div>
+                            <a class="btn btn-sm btn-warning" asp-controller="User" asp-action="Edit"
+                               asp-route-id="@i.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" asp-controller="User" asp-action="Delete"
+                               asp-route-id="@i.Id">Delete</a>
+                        </div>
+                    </div>
+                }
+            
+
+        </div>
+    </div>
+</div>

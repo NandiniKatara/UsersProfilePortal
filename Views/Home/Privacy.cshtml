@@ -1,0 +1,14 @@
+﻿@using Portal.Models.Account
+@model IEnumerable<Portal.Models.Account.AccountUser>
+@if (User.Identity.IsAuthenticated)
+{
+<div >
+    <span><h4>Welcome to </h4> </span>
+    <span class="text-success p-2"><h4>@User.Identity.Name.ToUpper()</h4></span>
+        @foreach (var i in Model)
+        {
+            <span>@i.Email</span>
+        }
+    </div>
+                }
+

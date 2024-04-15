@@ -1,0 +1,61 @@
+﻿@model Portal.Models.User
+<h1>Edit</h1>
+<div class="container">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="text-center text-primary">Edit User Details</h1>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-action="Edit">
+                    <div class="form-group">
+                        <h4>Full Name : </h4>
+                        <label asp-for="Name"></label>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Enter User Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                        <div class="form-group">
+                            <h4>Phone Number : </h4>
+                            <label asp-for="Phone"></label>
+                            <input type="text" asp-for="Phone" class="form-control" placeholder="Enter Phone Number" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4>Facebook: </h4>
+                        <label asp-for="Facebook"></label>
+                        <input type="text" asp-for="Facebook" class="form-control" placeholder="Enter Facebook Profile" />
+                        <span asp-validation-for="Facebook" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Facebook: </h4>
+                        <label asp-for="LinkedIn"></label>
+                        <input type="text" asp-for="LinkedIn" class="form-control" placeholder="Enter LinkedIn Profile" />
+                        <span asp-validation-for="LinkedIn" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <h4>Github: </h4>
+                        <label asp-for="Github"></label>
+                        <input type="text" asp-for="Github" class="form-control" placeholder="Enter Github Profile" />
+                        <span asp-validation-for="Github" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <h4>Twitter: </h4>
+                        <label asp-for="Twitter"></label>
+                        <input type="text" asp-for="Twitter" class="form-control" placeholder="Enter Twitter Profile" />
+                        <span asp-validation-for="Twitter" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-sm btn-outline-success floatright" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
