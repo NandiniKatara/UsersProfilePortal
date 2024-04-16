@@ -6,8 +6,8 @@ namespace Portal.Models.ViewModel
 {
     public class SignUpUserViewModel
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
         [Required(ErrorMessage = "Please Enter Username")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Please Enter Email")]

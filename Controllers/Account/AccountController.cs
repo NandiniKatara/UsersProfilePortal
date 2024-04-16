@@ -43,6 +43,9 @@ namespace Portal.Controllers.Account
                         var principal = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         HttpContext.Session.SetString("Username", model.Username);
+                        Response.Cookies.Append("Id", data.Id.ToString());
+                        Response.Cookies.Append("Email", data.Email);
+                        Response.Cookies.Append("Username", data.Username);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -90,7 +93,7 @@ namespace Portal.Controllers.Account
                     //ContactNumber=model.ContactNumber,
                     IsActive = model.IsActive,
                 };
-                context.AccountUsers.Add(data);
+                 context.AccountUsers.Add(data);
                 context.SaveChanges();
                 TempData["successMessage"] = "SignUp is completed successfully!" +
                     " Fill credentials to login";

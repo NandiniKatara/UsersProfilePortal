@@ -11,12 +11,10 @@ namespace Portal.Models.Account
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public bool IsRemember { get; set; }
-        public long? ContactNumber { get; set; }
-        public string? Facebook {  get; set; }
-        public string? LinkedIn { get; set; }
-        public string? Twitter { get; set; }
-        public string? Instagram { get; set; }
-        public string? Hobbies { get; set;}
-        public DateOnly? DateOfBirth { get; set; }
+
+        public static implicit operator Microsoft.VisualStudio.Services.Account.AccountUser?(AccountUser? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

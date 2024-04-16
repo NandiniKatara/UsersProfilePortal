@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Portal.Data;
 using Portal.Models;
 using System.Threading.Tasks;
-
+using Portal.Models.Account;
 namespace Portal.Controllers
 {
     public class UserController : Controller
@@ -15,10 +15,12 @@ namespace Portal.Controllers
             _context = context;
         }
 
+       
         public async Task<IActionResult> Index()
         {
-            var users = await _context.Users.ToListAsync();
-            return View(users);
+            int Id = Convert.ToInt32(Request.Cookies["Id"]);
+            var users = _context.Users.Where(i => i.UserId == Id);
+            return View(await users.ToListAsync());
         }
 
         [HttpGet]
@@ -32,6 +34,9 @@ namespace Portal.Controllers
         {
             if (ModelState.IsValid)
             {
+                int Id = Convert.ToInt32(Request.Cookies["Id"]);
+                model.UserId = Id;
+
                 _context.Users.Add(model);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "New record added!";
@@ -74,6 +79,9 @@ namespace Portal.Controllers
         {
             if (ModelState.IsValid)
             {
+                int Id = Convert.ToInt32(Request.Cookies["Id"]);
+                model.UserId = Id;
+
                 _context.Entry(model).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Record edited!";

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Services.Account;
 using Portal.Data;
 using Portal.Models;
 using System.Diagnostics;
@@ -23,10 +24,18 @@ namespace Portal.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var result = context.AccountUsers.ToList();
-            return View(result);
+            string Id = Request.Cookies["Id"];
+            string Username = Request.Cookies["Username"];
+            string Email = Request.Cookies["Email"];
+            //var Username = HttpContext.Session.GetString("Username");
+            //AccountUser user = await context.AccountUsers.FirstOrDefaultAsync(u=> u.Username == Username);
+
+            ViewData["Id"] = Id;
+            ViewData["Username"] = Username;
+            ViewData["Email"] = Email;
+            return View();
         }
 
         public IActionResult Privacy()

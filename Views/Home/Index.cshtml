@@ -1,21 +1,12 @@
 ﻿
 @using Portal.Models.Account
-@model IEnumerable<Portal.Models.Account.AccountUser>
-@if (Model != null)
+@model Portal.Models.Account.AccountUser
+@* @if (Model != null)
 {
     <div>
-        @foreach (var user in Model)
-        {
-            <h1>Welcome, @user.Username.ToUpper() ! </h1>
-            <br />
-            <br/>
-            <h2> Your email is: @user.Email</h2>
-            
-            
-            
-        }
+        @Model.Username
     </div>
-}
-
-
+} *@
+<h1>@ViewData["Email"]</h1>
+<h1>@ViewData["Username"]</h1>
 
