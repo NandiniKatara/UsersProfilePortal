@@ -13,6 +13,7 @@ namespace Portal.Controllers.Account
     public class AccountController : Controller
     {
         private readonly ApplicationContext context;
+
         public AccountController(ApplicationContext context)
         {
             this.context = context;
@@ -22,10 +23,12 @@ namespace Portal.Controllers.Account
         {
             return View();
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Login(LoginSignUpViewModel model)
         {
@@ -46,7 +49,7 @@ namespace Portal.Controllers.Account
                         Response.Cookies.Append("Id", data.Id.ToString());
                         Response.Cookies.Append("Email", data.Email);
                         Response.Cookies.Append("Username", data.Username);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "User");
                     }
                     else
                     {
@@ -54,8 +57,6 @@ namespace Portal.Controllers.Account
                         return View(model);
                     }
                 }
-
-
                 else
                 {
                     TempData["errorUsername"] = "Username not found";
@@ -80,6 +81,7 @@ namespace Portal.Controllers.Account
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult SignUp(SignUpUserViewModel model)
         {
@@ -90,10 +92,9 @@ namespace Portal.Controllers.Account
                     Username = model.Username,
                     Email = model.Email,
                     Password = model.Password,
-                    //ContactNumber=model.ContactNumber,
                     IsActive = model.IsActive,
                 };
-                 context.AccountUsers.Add(data);
+                context.AccountUsers.Add(data);
                 context.SaveChanges();
                 TempData["successMessage"] = "SignUp is completed successfully!" +
                     " Fill credentials to login";
@@ -104,6 +105,46 @@ namespace Portal.Controllers.Account
                 TempData["errorMessage"] = "Fill to submit !";
                 return View(model);
             }
+        }
+
+        public IActionResult ChangePassword()
+        {
+            int userId;
+            if (!int.TryParse(Request.Cookies["Id"], out userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var user = context.AccountUsers.Find(userId);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var model = new ChangePasswordViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            int userId;
+            if (!int.TryParse(Request.Cookies["Id"], out userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var user = context.AccountUsers.Find(userId);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            user.Password = model.NewPassword;
+            context.SaveChanges();
+
+            // Redirect to the index page or any other page after changing the password
+            return RedirectToAction("Index", "Home");
         }
     }
 }

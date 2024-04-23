@@ -7,18 +7,19 @@ namespace Portal.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        
+        public string? ProfileSocialMedia1 { get; set; } 
+        public string? ProfileUrl1 { get; set; } 
+        public string? ProfileSocialMedia2 { get; set; } 
+        public string? ProfileUrl2 { get; set; }
 
-        [Required (ErrorMessage ="* Name can't be blank")]
-        public string? Name { get; set; }
-        public string? Username { get; set; }
-        public string? Email { get; set; }
-        public string? Phone { get; set; }
-        public string? Facebook { get; set; }
-        public string? LinkedIn { get; set; }
-        public string? Github { get; set; }
-        public string? Twitter { get; set; }
+        public string? ProfileSocialMedia3 { get; set; } 
+        public string? ProfileUrl3 { get; set; }
 
-
+        public string? ProfileSocialMedia4 { get; set; } 
+        public string? ProfileUrl4 { get; set; }
         public int? UserId { get; set; }
 
     }

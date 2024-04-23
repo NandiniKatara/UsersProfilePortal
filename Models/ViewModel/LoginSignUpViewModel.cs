@@ -6,14 +6,10 @@ namespace Portal.Models.ViewModel
     {
         [Required]
         public string Username { get; set; }
-        //  public string Email { get; set; }
-        //public long ContactNumber { get; set; }
-
+       
         [Required]
         public string Password { get; set; }
-        //  public string ConfirmPassword { get; set; }
-        //  public bool IsActive { get; set; }
-
+        
         [Display(Name = "Remember Me")]
         public bool IsRemember { get; set; }
 

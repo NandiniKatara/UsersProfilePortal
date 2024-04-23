@@ -7,6 +7,9 @@
         @Model.Username
     </div>
 } *@
-<h1>@ViewData["Email"]</h1>
-<h1>@ViewData["Username"]</h1>
 
+<h1> Welcome,@ViewData["Username"]</h1>
+
+
+<h1>Email: @ViewData["Email"]</h1>
+<a asp-action="ChangePassword" asp-controller="Account" class="btn btn-primary">Change Password</a>

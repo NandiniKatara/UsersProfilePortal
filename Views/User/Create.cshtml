@@ -14,53 +14,97 @@
                         <label asp-for="Name"></label>
                         <input type="text" asp-for="Name" class="form-control" placeholder="Enter User Name" />
                         <span asp-validation-for="Name" class="text-danger"></span>
-
-                        <div class="form-group">
-                            <h4>Phone Number : </h4>
-                            <label asp-for="Phone"></label>
-                            <input type="text" asp-for="Phone" class="form-control" placeholder="Enter Phone Number" />
-                            <span asp-validation-for="Phone" class="text-danger"></span>
-
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>Profile Section:</h4>
+                        <div class="profile-inputs" id="profile-inputs-1">
+                            <div class="form-group row">
+                                <div class=" col-sm-4">
+                                    <select class=" custom-select profile-select mt-1" asp-for="ProfileSocialMedia1" style="height:45px">
+                                        <option value="">Select Social Media</option>
+                                        <option value="Facebook-">Facebook </option>
+                                        <option value="LinkedIn-">LinkedIn</option>
+                                        <option value="GitHub-">GitHub</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" style="height:45px" asp-for=" ProfileUrl1" class="form-control profile-input mt-1" placeholder="Enter Profile URL">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class=" col-sm-4">
+                                    <select class=" custom-select profile-select mt-1" asp-for="ProfileSocialMedia2" style="height:45px">
+                                        <option value="">Select Social Media</option>
+                                        <option value="Facebook-">Facebook </option>
+                                        <option value="LinkedIn-">LinkedIn</option>
+                                        <option value="GitHub-">GitHub</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" style="height:45px" asp-for=" ProfileUrl2" class="form-control profile-input mt-1" placeholder="Enter Profile URL">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class=" col-sm-4">
+                                    <select class=" custom-select profile-select mt-1" asp-for="ProfileSocialMedia3" style="height:45px">
+                                        <option value="">Select Social Media</option>
+                                        <option value="Facebook-">Facebook </option>
+                                        <option value="LinkedIn-">LinkedIn</option>
+                                        <option value="GitHub-">GitHub</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" style="height:45px" asp-for=" ProfileUrl3" class="form-control profile-input mt-1" placeholder="Enter Profile URL">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class=" col-sm-4">
+                                    <select class=" custom-select profile-select mt-1" asp-for="ProfileSocialMedia4" style="height:45px">
+                                        <option value="">Select Social Media</option>
+                                        <option value="Facebook-">Facebook </option>
+                                        <option value="LinkedIn-">LinkedIn</option>
+                                        <option value="GitHub-">GitHub</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" style="height:45px" asp-for=" ProfileUrl4" class="form-control profile-input mt-1" placeholder="Enter Profile URL">
+                                </div>
+                            </div>
                         </div>
+                       
                     </div>
-                    <div class="form-group">
-                        <h4>Facebook: </h4>
-                        <label asp-for="Facebook"></label>
-                        <input type="text" asp-for="Facebook" class="form-control" placeholder="Enter Facebook Profile" />
-                        <span asp-validation-for="Facebook" class="text-danger"></span>
-
-                    </div>
-
-                    <div class="form-group">
-                        <h4>Facebook: </h4>
-                        <label asp-for="LinkedIn"></label>
-                        <input type="text" asp-for="LinkedIn" class="form-control" placeholder="Enter LinkedIn Profile" />
-                        <span asp-validation-for="LinkedIn" class="text-danger"></span>
-
-                    </div>
-                    <div class="form-group">
-                        <h4>Github: </h4>
-                        <label asp-for="Github"></label>
-                        <input type="text" asp-for="Github" class="form-control" placeholder="Enter Github Profile" />
-                        <span asp-validation-for="Github" class="text-danger"></span>
-
-                    </div>
-                    <div class="form-group">
-                        <h4>Twitter: </h4>
-                        <label asp-for="Twitter"></label>
-                        <input type="text" asp-for="Twitter" class="form-control" placeholder="Enter Twitter Profile" />
-                        <span asp-validation-for="Twitter" class="text-danger"></span>
-
-                    </div>
-
-
                     <div class="form-group">
                         <input type="submit" value="Submit" class="btn btn-sm btn-outline-success floatright" />
-
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
+
+<script>
+    // Function to handle profile select change
+    function handleProfileSelectChange(profileNumber) {
+        var selectElement = document.getElementById("profile-select-" + profileNumber);
+        var inputElement = document.getElementById("profile-input-" + profileNumber);
+        if (selectElement.value === "") {
+            inputElement.style.display = "none";
+        } else {
+            inputElement.style.display = "block";
+            var placeholder = "Enter " + selectElement.value.charAt(0).toUpperCase() + selectElement.value.slice(1) + " Profile URL";
+            inputElement.setAttribute("placeholder", placeholder);
+        }
+    }
+
+    // Add event listeners for each profile select
+    for (var i = 1; i <= 4; i++) {
+        (function (profileNumber) {
+            var selectElement = document.getElementById("profile-select-" + profileNumber);
+            selectElement.addEventListener("change", function () {
+                handleProfileSelectChange(profileNumber);
+            });
+        })(i);
+    }
+</script>
+

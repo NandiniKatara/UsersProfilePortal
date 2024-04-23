@@ -14,8 +14,6 @@ namespace Portal.Controllers
     {
         private readonly ApplicationContext context;
 
-       
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ApplicationContext context, ILogger<HomeController> logger)
@@ -29,8 +27,7 @@ namespace Portal.Controllers
             string Id = Request.Cookies["Id"];
             string Username = Request.Cookies["Username"];
             string Email = Request.Cookies["Email"];
-            //var Username = HttpContext.Session.GetString("Username");
-            //AccountUser user = await context.AccountUsers.FirstOrDefaultAsync(u=> u.Username == Username);
+           
 
             ViewData["Id"] = Id;
             ViewData["Username"] = Username;

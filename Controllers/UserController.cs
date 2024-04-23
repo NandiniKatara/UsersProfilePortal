@@ -50,6 +50,8 @@ namespace Portal.Controllers
         }
 
         [HttpPost]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -57,7 +59,7 @@ namespace Portal.Controllers
             {
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Record deleted!";
+                TempData["SuccessMessage"] = "Profile and details deleted!";
             }
 
             return RedirectToAction(nameof(Index));

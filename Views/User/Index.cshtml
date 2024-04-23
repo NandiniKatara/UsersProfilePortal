@@ -3,30 +3,36 @@
 <div class="container">
     <div class="row">
         <div>
-            <h2 class="text-center text-uppercase">Users Record</h2>
-            <a class="btn btn-sm btn-success m-1" asp-controller="User" asp-action="Create">Create</a>
+            <h2 class="text-center text-uppercase">Users Dashboard</h2>
+
+            @if (!Model.Any())
+            {
+                <a class="btn btn-sm btn-success m-1" asp-controller="User" asp-action="Create" style="font-size:30px">Add New Details</a>
+            }
             <h4 class="text-center text-success">@TempData["error"]</h4>
             <div>
             </div>
             
             @foreach (var i in Model)
             {
-                <div class="text-center">
-                    <p>User-Id: </p> <p>@i.Id</p>
-                    <p>@i.Name</p>
-                    <p>@i.Username</p>
+                <div class="ml-5 " style="font-size:25px">
 
-                    <p>@i.Email</p>
-                    <p>@i.Phone</p>
-                    <p>@i.Facebook</p>
-                    <p>@i.LinkedIn</p>
-                    <p>@i.Github</p>
-                    <p>@i.Twitter</p>
+                    <h2 class="text-success mb-4">@i.Name Profile : </h2>
+                    <p><span class="text-primary">@i.ProfileSocialMedia1 </span> @i.ProfileUrl1</p>
+                    <p><span class="text-primary">@i.ProfileSocialMedia2 </span> @i.ProfileUrl2</p>
+                    <p><span class="text-primary">@i.ProfileSocialMedia3  </span>  @i.ProfileUrl3</p>
+                    <p><span class="text-primary">@i.ProfileSocialMedia4  </span>  @i.ProfileUrl4</p>
+                    
+                    
                     <div>
                         <a class="btn btn-sm btn-warning" asp-controller="User" asp-action="Edit"
-                           asp-route-id="@i.Id">Edit</a>
-                        <a class="btn btn-sm btn-danger" asp-controller="User" asp-action="Delete"
-                           asp-route-id="@i.Id">Delete</a>
+                           asp-route-id="@i.Id" style="font-size:20px">Edit</a>
+                        
+                        <form asp-action="Delete" asp-route-id="@i.Id" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger" style="font-size:20px">Delete Details</button>
+                        </form>
+                       
                     </div>
                 </div>
             }
